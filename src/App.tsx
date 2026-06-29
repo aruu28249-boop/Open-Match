@@ -7,10 +7,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage'
 import PostProjectPage from './pages/PostProjectPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
-
-function LandingPage() {
-  return <div>Landing Page — Coming Soon</div>
-}
+import LandingPage from './pages/LandingPage'
 
 function NotFoundPage() {
   return <div>404 — Page Not Found</div>
