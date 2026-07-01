@@ -8,6 +8,7 @@ import PostProjectPage from './pages/PostProjectPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 import LandingPage from './pages/LandingPage'
+import OnboardingPage from './pages/OnboardingPage'
 
 function NotFoundPage() {
   return <div>404 — Page Not Found</div>
@@ -21,6 +22,9 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+        {/* Onboarding — full screen, no sidebar */}
+        <Route path="/onboarding" element={<OnboardingPage />} />
 
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
