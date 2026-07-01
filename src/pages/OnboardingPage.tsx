@@ -21,6 +21,8 @@ import { useOnboardingStore } from '../store/onboardingStore'
 import StepRoleSelection from '../components/onboarding/StepRoleSelection'
 import StepProfileBasics from '../components/onboarding/StepProfileBasics'
 import StepGitHubImport from '../components/onboarding/StepGitHubImport'
+import StepSkillAssessment from '../components/onboarding/StepSkillAssessment'
+import StepSkillGap from '../components/onboarding/StepSkillGap'
 
 // ---- Step labels ------------------------------------------
 //
@@ -58,6 +60,10 @@ export default function OnboardingPage() {
         return <StepProfileBasics />
       case 3:
         return <StepGitHubImport />
+      case 4:
+        return <StepSkillAssessment />
+      case 5:
+        return <StepSkillGap />
       default:
         // Placeholder for steps 2-6 (we'll build these one by one)
         return (

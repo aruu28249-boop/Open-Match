@@ -21,6 +21,13 @@ export type UserRole =
   | 'contributor'   // "I'm an Experienced Contributor"
   | 'newcomer'      // "I'm a Newcomer to Open Source"
 
+// A single skill entry — used in Step 4
+export interface SkillEntry {
+  name: string
+  category: string
+  confidence: 'beginner' | 'intermediate' | 'advanced'
+}
+
 // The shape of everything we collect during onboarding
 export interface OnboardingData {
   // Step 1
@@ -40,13 +47,13 @@ export interface OnboardingData {
   githubPrCount: number
   githubContributions: number[]   // 12 numbers — one bar per month
 
-  // Step 4 (we'll fill these in later)
-  skills: { name: string; category: string; confidence: 'beginner' | 'intermediate' | 'advanced' }[]
+  // Step 4
+  skills: SkillEntry[]
 
-  // Step 5 (we'll fill these in later)
-  projectTypes: string[]
-  contributionTypes: string[]
-  availability: string
+  // Step 5
+  projectTypes: string[]       // which project types they prefer
+  contributionTypes: string[]  // what kind of contributions they make
+  availability: string         // hours per week available
 
   // Step 6 (we'll fill these in later)
   wantsMentor: boolean
@@ -71,17 +78,26 @@ export interface GitHubDataPayload {
   githubContributions: number[]
 }
 
+// The fields Step 5 saves (for contributor / maintainer)
+export interface PreferencesPayload {
+  projectTypes: string[]
+  contributionTypes: string[]
+  availability: string
+}
+
 // The shape of the store itself — data + actions (functions)
 interface OnboardingStore {
-  currentStep: number          // Which step we're on (1–6)
-  data: OnboardingData         // All the collected answers
+  currentStep: number
+  data: OnboardingData
 
   setRole: (role: UserRole) => void                          // Step 1
   setProfileBasics: (payload: ProfileBasicsPayload) => void  // Step 2
   setGitHubData: (payload: GitHubDataPayload) => void        // Step 3
-  nextStep: () => void                 // Move forward one step
-  prevStep: () => void                 // Move back one step
-  setStep: (step: number) => void      // Jump to a specific step
+  setSkills: (skills: SkillEntry[]) => void                       // Step 4
+  setPreferences: (payload: PreferencesPayload) => void            // Step 5
+  nextStep: () => void
+  prevStep: () => void
+  setStep: (step: number) => void
 }
 
 // ---- Default (empty) state --------------------------------
@@ -136,6 +152,18 @@ export const useOnboardingStore = create<OnboardingStore>((set) => ({
 
   // Save GitHub import results from Step 3
   setGitHubData: (payload) =>
+    set((state) => ({
+      data: { ...state.data, ...payload },
+    })),
+
+  // Save chosen skills array from Step 4
+  setSkills: (skills) =>
+    set((state) => ({
+      data: { ...state.data, skills },
+    })),
+
+  // Save preferences from Step 5 (contributor / maintainer path)
+  setPreferences: (payload) =>
     set((state) => ({
       data: { ...state.data, ...payload },
     })),
