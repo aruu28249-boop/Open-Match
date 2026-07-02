@@ -136,8 +136,8 @@ function SettingRow({
   control,
   noBorder,
 }: {
-  label: string
-  description?: string
+  label: React.ReactNode
+  description?: React.ReactNode
   control: React.ReactNode
   noBorder?: boolean
 }) {
@@ -462,56 +462,41 @@ export default function SettingsPage() {
           />
 
           {/* Danger zone */}
-          <div
-            style={{
-              margin: '0 1.5rem 1.5rem',
-              padding: '1.25rem',
-              borderRadius: '10px',
-              border: '1px solid var(--state-error)',
-              backgroundColor: 'var(--state-error-bg)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
-              <div>
-                <p
-                  style={{
-                    fontWeight: 700,
-                    color: 'var(--state-error)',
-                    fontSize: '0.9rem',
-                    margin: '0 0 4px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                  }}
-                >
-                  <AlertTriangle size={14} />
-                  Delete account
-                </p>
-                <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.55 }}>
-                  Permanently removes your profile, skills, contributions and trust history.{' '}
-                  <strong style={{ color: 'var(--text-primary)' }}>This cannot be undone.</strong>
-                </p>
-              </div>
-
-              {!deleteConfirm ? (
+          <SettingRow
+            noBorder
+            label={
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--state-error)', fontWeight: 700 }}>
+                <AlertTriangle size={14} />
+                Delete account
+              </span>
+            }
+            description={
+              <span>
+                Permanently removes your profile, skills, contributions and trust history.{' '}
+                <strong style={{ color: 'var(--text-primary)' }}>This cannot be undone.</strong>
+              </span>
+            }
+            control={
+              !deleteConfirm ? (
                 <button
                   id="btn-delete-account-confirm"
                   onClick={() => setDeleteConfirm(true)}
                   style={{
-                    padding: '7px 18px',
+                    padding: '8px 20px',
                     borderRadius: '8px',
-                    border: '1px solid var(--state-error)',
-                    backgroundColor: 'transparent',
-                    color: 'var(--state-error)',
+                    border: 'none',
+                    backgroundColor: 'var(--state-error)',
+                    color: '#fff',
                     fontFamily: 'var(--font-display)',
                     fontWeight: 600,
                     fontSize: '0.85rem',
                     cursor: 'pointer',
                     flexShrink: 0,
-                    transition: 'background-color 0.15s ease',
+                    transition: 'opacity 0.15s ease',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(181,86,79,0.15)' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
                 >
                   Delete account
                 </button>
@@ -551,9 +536,9 @@ export default function SettingsPage() {
                     Yes, delete permanently
                   </button>
                 </div>
-              )}
-            </div>
-          </div>
+              )
+            }
+          />
         </Section>
 
       </div>
