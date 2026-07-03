@@ -18,6 +18,8 @@ import LearningPathsPage from './pages/LearningPathsPage'
 import MentorshipPage from './pages/MentorshipPage'
 import TrustScorePage from './pages/TrustScorePage'
 import MessagesPage from './pages/MessagesPage'
+import ApplicantManagementPage from './pages/ApplicantManagementPage'
+import AdminDashboardPage from './pages/AdminDashboardPage'
 
 function NotFoundPage() {
   return <div>404 — Page Not Found</div>
@@ -40,6 +42,9 @@ export default function App() {
 
         {/* Edit own profile — standalone, no sidebar */}
         <Route path="/profile/edit" element={<EditProfilePage />} />
+        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/my-projects/:id/applicants" element={<ApplicantManagementPage />} />
+
 
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />

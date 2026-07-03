@@ -1,54 +1,77 @@
-/* postcss */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: var(--bg-base);
+}
+
 :root {
-  --bg-base:        #17151C;
-  --bg-surface:     #201D26;
-  --bg-elevated:    #2A2631;
-  --bg-overlay:     #322E3B;
+  /* Backgrounds — slightly brighter than before */
+  --bg-base:        #211E29;
+  --bg-surface:     #2B2733;
+  --bg-elevated:    #35303F;
+  --bg-overlay:     #3D3849;
 
-  --accent-primary:   #9380A6;
-  --accent-glow:      rgba(147, 128, 166, 0.15);
-  --accent-secondary: #B08A5C;
-  --accent-gold:      #C9A876;
+  /* Brand Accents — purple warm theme */
+  --accent-primary:   #A98FBB;
+  --accent-glow:      rgba(169, 143, 187, 0.15);
+  --accent-secondary: #C49A6A;
+  --accent-gold:      #D4B47E;
 
-  --text-primary:   #EDEAE6;
-  --text-secondary: #9C9690;
-  --text-tertiary:  #948C82;  /* CHANGED from #5C5750 — was 2.3:1 contrast (unreadable), now 5:1 */
-  --text-inverse:   #17151C;
+  /* Text */
+  --text-primary:   #F0EDE9;
+  --text-secondary: #ADA7A0;
+  --text-tertiary:  #7A7470;
+  --text-inverse:   #211E29;
 
-  --state-success:    #6B9B6E;
-  --state-success-bg: rgba(107, 155, 110, 0.15);
-  --state-warning:    #C99A4B;
-  --state-warning-bg: rgba(201, 154, 75, 0.15);
-  --state-error:      #B5564F;
-  --state-error-bg:   rgba(181, 86, 79, 0.15);
+  /* Semantic States */
+  --state-success:    #7AAD7D;
+  --state-success-bg: rgba(122, 173, 125, 0.15);
+  --state-warning:    #D4A855;
+  --state-warning-bg: rgba(212, 168, 85, 0.15);
+  --state-error:      #C4605A;
+  --state-error-bg:   rgba(196, 96, 90, 0.15);
 
-  --trust-0: #4A4640;  /* CHANGED — separated from text-tertiary so digit text no longer matches circle fill */
-  --trust-1: #7A8CA3;
-  --trust-2: #6BA69B;
-  --trust-3: #6B9B6E;
-  --trust-4: #C9A876;
+  /* Trust Level Colors */
+  --trust-0: #5A5450;
+  --trust-1: #8A9CB5;
+  --trust-2: #7AB8AC;
+  --trust-3: #7AAD7D;
+  --trust-4: #D4B47E;
 
-  --match-low:    #B5564F;
-  --match-medium: #C99A4B;
-  --match-high:   #6B9B6E;
+  /* Match Score Colors */
+  --match-low:    #C4605A;
+  --match-medium: #D4A855;
+  --match-high:   #7AAD7D;
 
-  --border-subtle:  rgba(90, 84, 100, 0.4);
-  --border-default: #3A3542;
-  --border-active:  #8E7A9B;
+  /* Borders */
+  --border-subtle:  rgba(100, 94, 112, 0.4);
+  --border-default: #453F50;
+  --border-active:  #A98FBB;
 
+  /* Shadows */
   --shadow-card:  0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
   --shadow-modal: 0 8px 24px rgba(0,0,0,0.7);
-  --shadow-glow: 0 0 16px rgba(147, 128, 166, 0.2);
+  --shadow-glow:  0 0 16px rgba(169, 143, 187, 0.2);
+
+  /* Fonts */
+  --font-display: 'Sora', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Border Radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
 }
+
 @keyframes skeleton-pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  50%       { opacity: 0.4; }
 }
 
 .skeleton {
